@@ -11,6 +11,10 @@ env:
   global:
     - CARTON=$HOME/.carton/bin/carton
 before_install:
+  # el4t should be able to treat submodules but it keep failing.
+  # so let's play on the safe side:
+  - git submodule update --init --recursive
+
   - pip install -q virtualenv nose
   - pip install -q --requirement requirements.txt
   - curl -fsSkL
